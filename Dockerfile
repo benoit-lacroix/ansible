@@ -6,7 +6,7 @@ RUN useradd --home /home/ansible \
     ansible
 
 RUN apt update \
-    && apt -y install software-properties-common \
+    && apt -y install software-properties-common sshpass \
     && apt -o "Aquire::https::Verify-Peer=false" -y install ansible \
     && apt clean
 
