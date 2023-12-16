@@ -1,0 +1,14 @@
+version: "3.8"
+
+name: ansible-local
+
+services:
+  ansible:
+    image: local/ansible
+    container_name: ansible-local
+    hostname: ansible-local
+    volumes:
+      - ./inventory:/home/ansible/inventory
+      - ./playbooks:/home/ansible/playbooks
+    stdin_open: true
+    tty: true
