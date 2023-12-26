@@ -1,0 +1,32 @@
+---
+- name: Hello World
+  hosts: local
+  vars:
+    spaces:
+      - "near-space"
+      - "outer-space"
+      - "deep-space"
+      - "hyper-space"
+    positions:
+      - { id: "one", title: "The first one!" }
+      - { id: "two", title: "The second one!" }
+      - { id: "three", title: "Third, not so bad!" }
+      - { id: "four", title: "Fourth, no comment!" }
+      - { id: "five", title: "Penultimate" }
+      - { id: "six", title: "Last but not least!" }
+
+  tasks:
+    - name: Simple list of simples elements
+      ansible.builtin.debug:
+        msg: "Space: {{ item }}"
+      loop: "{{ spaces }}"
+
+    - name: Simple list of complex elements
+      ansible.builtin.debug:
+        msg: "Config: {{ item.id }} / {{ item.title }}"
+      loop: "{{ positions }}"
+
+    - name: Nested list of simple and complex elements
+      ansible.builtin.debug:
+        msg: "Space: {{item.0}} / Config: {{item.1.id}} -  {{item.1.title}}"
+      loop: "{{ spaces|product(positions)|list }}"
