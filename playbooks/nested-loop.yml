@@ -1,5 +1,5 @@
 ---
-- name: Hello World
+- name: Loops and nested loops
   hosts: local
   vars:
     spaces:
